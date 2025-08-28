@@ -1,3 +1,10 @@
+---
+export:
+  - format: pdf
+    output: exports/Bachelor_thesis_Luuk_Froling.pdf
+    template: custom_theme
+
+---
 # Hello
 
 This is some text beforehand
