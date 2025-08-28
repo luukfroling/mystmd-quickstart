@@ -1,13 +1,4 @@
----
-export:
-  - format: pdf
-    template: curvenote
-    output: exports/book.pdf  
-    id: book
-    author:
-    - name: test name
-    date: 2023-01-23
----
+
 # Hello
 
 test 
