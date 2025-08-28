@@ -13,6 +13,8 @@ import { writeFile } from "fs/promises";
 
 const image_folder = "./images";
 
+let pageNumber = 0;
+
 const iframeTransform = {
   name: "iframe-pdf",
   doc: "Replace iframes in PDF builds.",
@@ -25,50 +27,47 @@ const iframeTransform = {
     // Get all nodes for each page
     const rootChildren = tree.children[0]?.children || [];
 
-    // print all nodes
-    rootChildren.forEach((node, index) => {
-        if(node.type == 'image') console.log(node)
-    })
-
     if (isPDF) {
         for (const [index, node] of rootChildren.entries()) {
             if (node.type === "container" && node.children[0]?.type === "iframe") {
-            const url = node.children[0]?.src || "No link found";
+                const url = node.children[0]?.src || "No link found";
 
-            try {
-                // Generate QR code as a buffer (PNG format)
-                const buffer = await QRCode.toBuffer(url, { type: "png" });
+                try {
 
-                // Save buffer to file
-                const outputFile = `${image_folder}/qrcode_${index}.png`;
-                await writeFile(outputFile, buffer);
+                    node.qr_index =  '_' + index + '_' + pageNumber;
+                    // Generate QR code as a buffer (PNG format)
+                    const buffer = await QRCode.toBuffer(url, { type: "png" });
 
-                console.log(`[IFRAME] Generated QR code, saved to ${outputFile}`);
+                    // Save buffer to file
+                    const outputFile = `${image_folder}/qrcode${node.qr_index}.png`;
+                    await writeFile(outputFile, buffer);
 
-                // Replace node with an image
-                node.type = "container";
-                node.children = [
-                {
-                    type: "paragraph",
-                    children: [
-                    { type: "text", value: "scan qr code to go to video" }
-                    ]
-                },
-                {
-                    type: "image",
-                    url: `images/qrcode_${index}.png`,  // make sure relative to book build
-                    alt: "QR code",
-                    title: "scan the QR code to open the link"
+                    console.log(`[IFRAME] Generated QR code, saved to ${outputFile}`);
+
+                    // Replace node with an image
+                    node.type = "container";
+                    node.children = [
+                    {
+                        type: "paragraph",
+                        children: [
+                        { type: "text", value: "scan qr code to go to video" }
+                        ]
+                    },
+                    {
+                        type: "image",
+                        url: `images/qrcode${node.qr_index}.png`,  // make sure relative to book build
+                        alt: "QR code",
+                        title: "scan the QR code to open the link"
+                    }
+                    ];
+                } catch (err) {
+                    console.log("[IFRAME] Error generating QR code:", err);
                 }
-                ];
-            } catch (err) {
-                console.log("[IFRAME] Error generating QR code:", err);
-            }
             }
         }
     }
 
-    
+    pageNumber += 1;
   },
 };
 
