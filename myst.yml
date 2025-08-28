@@ -1,0 +1,23 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: 45885c57-5d92-4cfb-b33e-b6094ac96a96
+  # title:
+  # description:
+  # keywords: []
+  # authors: []
+  exports:
+    - format: pdf
+      template: curvenote
+      output: exports/TN2985.pdf  
+      id: TN2985
+  plugins:
+    - plugins/iframe_pdf.mjs
+
+  github: https://github.com/jupyter-book/mystmd-quickstart
+  # To autogenerate a Table of Contents, run "myst init --write-toc"
+site:
+  template: book-theme
+  # options:
+  #   favicon: favicon.ico
+  #   logo: site_logo.png
