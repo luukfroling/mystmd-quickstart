@@ -2,7 +2,7 @@
 *  - check for iframes
 *  - generate QR code for iframe link
 *  - replace node
-* QR codes will be saved in the image_folder. make sure this folder exists!
+*  QR codes will be saved in the image_folder. make sure this folder exists!
 */
 
 // see (https://next.jupyterbook.org/plugins/directives-and-roles#create-a-transform)
