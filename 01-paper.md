@@ -1,9 +1,9 @@
 ---
 export:
   - format: pdf
-    output: exports/Bachelor_thesis_Luuk_Froling.pdf
-    template: custom_theme
-
+    template: curvenote
+    output: exports/book.pdf  
+    id: book
 ---
 # Hello
 
