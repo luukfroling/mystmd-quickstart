@@ -1,9 +1,4 @@
-
 # Hello
-
-test 
-
-This is some text beforehand
 
 :::{iframe} https://www.youtube.com/embed/8VUG2Z-j_NQ?si=hR_JjaREoq77-gWs
 :width: 60%
@@ -17,6 +12,9 @@ Collision of coins with a small angle
 :alt: Grapes on a vineyard
 :width: 500px
 :align: center
+
+this is a caption - where is it located?
+
 :::
 
 This is some text afterwards

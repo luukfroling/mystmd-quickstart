@@ -1,1 +1,4 @@
-- add npm install npm install qrcode to the deploy action
+# plugin to replace IFrame with QR code image
+
+1) Add 'npm install qrcode' to GitHub action
+2) Add plugin
